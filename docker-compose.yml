@@ -1,0 +1,51 @@
+# Версия docker-compose
+version: '2'
+# Список наших сервисов (контейнеров)
+services:
+    nginx:
+# используем последний стабильный образ nginx
+        build: ./images/nginx
+        # маршрутизируем порты
+        ports:
+            - "80:80"
+            - "443:443"
+        # монтируем директории, слева директории на основной машине, справа - куда они монтируются в контейнере
+        volumes:
+            - ./hosts:/etc/nginx/conf.d
+            - ./www:/var/www
+            - ./logs:/var/log/nginx
+        # nginx должен общаться с php контейнером
+        links:
+            - php
+
+    php:
+        build: ./images/php
+        ports:
+            - "8000:8000"
+        volumes:
+           - ./www:/var/www
+        environment:
+            XDEBUG_CONFIG: remote_host=127.0.0.1
+
+    postgres:
+        image: postgres:latest
+        build: ./images/postgres
+        ports:
+           - "5432:5432"
+        environment:
+            POSTGRES_DB: dev8
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: secret
+            PGDATA: /var/lib/postgresql/data
+            DB_HOST: postgres
+        volumes:
+           - ./postgres:/var/lib/postgresql/data
+
+ # mysql:
+ #     image: mariadb:latest
+ #     ports:
+ #        - "3306:3306"
+ #     environment:
+ #         MYSQL_ROOT_PASSWORD: secret
+ #     volumes:
+ #        - ./mysql:/var/lib/mysql
