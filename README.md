@@ -7,5 +7,6 @@
       - PHP
       - postgresql (можно поднять так же mysql)
 
+### Видео, как я это делал, [тут](https://youtu.be/QHXiQI7APcE)
 ##### Автор
  - **Vassiliy Yegorov** - *Initial work* - [vasyakrg](https://github.com/vasyakrg)
