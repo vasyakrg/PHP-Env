@@ -7,6 +7,13 @@
       - PHP
       - postgresql (можно поднять так же mysql)
 
+## Использование
+- заполнить `.env`, особое внимание обратить на свой логин в hub.docker и заполнить переменную `DOCKER_LOGIN`
+- запустить `./php-build.sh` - он соберет php и модули, запакует и выгрузит на ваш акканут в hub.docker
+- запустить `./dock-start.sh` - поднимет все инфраструкуру
+- остановить - `./dock-stop.sh`
+- удалить контейнеры и все волуме (диструктивно!) - `dock-prune.sh`
+
 ### Видео, как я это делал, [тут](https://youtu.be/QHXiQI7APcE)
 ##### Автор
  - **Vassiliy Yegorov** - *Initial work* - [vasyakrg](https://github.com/vasyakrg)

@@ -71,4 +71,5 @@ networks:
 
 volumes:
     postgres:
+        name: php_volume_psql
     # mysql:
