@@ -1,10 +1,12 @@
 #!/bin/sh
+source .env
+
 now="$(date +'%d%m%Y_%H_%M_%S')"
-DB_CONTAINER=docker_postgres_1
-DB_NAME=pingdb
-DB_USER=postgres
+CONTAINER_DB=${CONTAINER_DB}
+POSTGRES_DB=${POSTGRES_DB}
+POSTGRES_USER=${POSTGRES_USER}
 LOCAL_DUMP_PATH="backup/"
 
-docker exec -u postgres "${DB_CONTAINER}" pg_dump -Ft -d "${DB_NAME}" > "${LOCAL_DUMP_PATH}""${DB_NAME}"-"${now}".tar
-docker exec -u postgres "${DB_CONTAINER}" pg_dump -Ft -d "${DB_NAME}" > "${LOCAL_DUMP_PATH}""${DB_NAME}".tar
+docker exec -u ${POSTGRES_USER} "${CONTAINER_DB}" pg_dump -Ft -d "${POSTGRES_DB}" > "${LOCAL_DUMP_PATH}""${POSTGRES_DB}"-"${now}".tar
+
 echo "backup complete"

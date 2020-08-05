@@ -1,2 +1,3 @@
-#sh postgresbackup.sh
+#!/bin/bash
+
 docker-compose stop
