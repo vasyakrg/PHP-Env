@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source .env
+
 cd images/php
 
 docker build -t ${DOCKER_LOGIN}/${DOCKER_IMAGE} .
