@@ -1,4 +1,10 @@
 #!/bin/sh
+
+[[ ! -f .env ]] && {
+    cp env.example .env
+    echo "first init, change .env for youself !"
+    exit 1
+}
 source .env
 
 now="$(date +'%d%m%Y_%H_%M_%S')"
